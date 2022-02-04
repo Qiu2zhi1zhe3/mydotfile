@@ -24,6 +24,8 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
+elif cat /proc/version | grep -Eqi "android"; then
+    release="android"    
 else
     echo -e "  không phát hiện ra phiên bản hệ thống, vui lòng liên hệ với tác giả tập lệnh！${plain}\n" && exit 1
 fi
@@ -46,35 +48,15 @@ if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ] ; then
     exit -1
 fi
 
-os_version=""
 
-# os version
-if [[ -f /etc/os-release ]]; then
-    os_version=$(awk -F'[= ."]' '/VERSION_ID/{print $3}' /etc/os-release)
-fi
-if [[ -z "$os_version" && -f /etc/lsb-release ]]; then
-    os_version=$(awk -F'[= ."]+' '/DISTRIB_RELEASE/{print $2}' /etc/lsb-release)
-fi
-
-if [[ x"${release}" == x"centos" ]]; then
-    if [[ ${os_version} -le 6 ]]; then
-        echo -e "  vui lòng sử dụng CentOS 7 Hoặc hệ thống cao hơn！${plain}\n" && exit 1
-    fi
-elif [[ x"${release}" == x"ubuntu" ]]; then
-    if [[ ${os_version} -lt 16 ]]; then
-        echo -e "  vui lòng sử dụng Ubuntu 16 Hoặc hệ thống cao hơn！${plain}\n" && exit 1
-    fi
-elif [[ x"${release}" == x"debian" ]]; then
-    if [[ ${os_version} -lt 8 ]]; then
-        echo -e "  vui lòng sử dụng Debian 8 Hoặc hệ thống cao hơn！${plain}\n" && exit 1
-    fi
-fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum install wget curl tar git zsh vim -y
+    	yum update && yum upgrade -y
+        yum install wget curl tar git zsh vim -y    
     else
-        apt install wget curl tar git zsh vim -y
+    	apt update && apt upgrade -y
+        apt install wget curl tar git zsh vim sudo -y
     fi
 }
 
@@ -84,7 +66,8 @@ install_base
 cd $HOME
 git clone https://github.com/Qiu2zhi1zhe3/mydotfile
 cp -r ./mydotfile/. .
-rm -rf $HOME/mydotfile
+rm -rf $HOME/.git $HOME/README.md $HOME/install.sh $HOME/mydotfile
+chmod -R 755 $HOME/.local
 sed -i 's+required+sufficient+g' /etc/pam.d/chsh
 chsh -s /bin/zsh
 sed -i 's+.*PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config

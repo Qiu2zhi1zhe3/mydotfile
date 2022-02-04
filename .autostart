@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#cursor bar or bold pipe
+#echo -e "\e[2 q"
+
+export COLUMNS LINES
+
+#cursor underline    
+echo -e "\e[4 q"
+
+#cursor pipe
+#echo -e "\e[6 q"
+
+#c
+
+#if [ "$TMUX" == "" ]; then
+
+#  tmux
+
+#fi
+
+#if [ ! -f ~/.scripts/pid/login ]; then
+        
+#   bash ~/.scripts/system/login.sh
+
+#fi
+
+#neo

@@ -81,4 +81,4 @@ setup() {
 install_base
 install_mydotfile
 setup
-
+echo "Hoàn Thành Cài Đặt"

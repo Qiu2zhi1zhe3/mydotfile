@@ -59,18 +59,26 @@ install_base() {
         apt install wget curl tar git zsh vim sudo -y
     fi
 }
-
-
+install_mydotfile() {
+    cd $HOME
+	git clone https://github.com/Qiu2zhi1zhe3/mydotfile
+	cp -r ./mydotfile/. .
+	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile
+	chmod -R 755 $HOME/.local
+}
+setup() {
+    if [[ x"${release}" == x"android" ]]; then
+		chsh -s zsh
+    else
+    	sed -i 's+required+sufficient+g' /etc/pam.d/chsh
+		chsh -s /bin/zsh
+		sed -i 's+.*PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
+		sed -i 's+.*PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
+		passwd root
+		service sshd restart
+    fi
+}
 install_base
+install_mydotfile
+setup
 
-cd $HOME
-git clone https://github.com/Qiu2zhi1zhe3/mydotfile
-cp -r ./mydotfile/. .
-rm -rf $HOME/.git $HOME/README.md $HOME/install.sh $HOME/mydotfile
-chmod -R 755 $HOME/.local
-sed -i 's+required+sufficient+g' /etc/pam.d/chsh
-chsh -s /bin/zsh
-sed -i 's+.*PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
-sed -i 's+.*PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
-passwd root
-service sshd restart

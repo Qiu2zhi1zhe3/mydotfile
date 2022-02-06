@@ -7,11 +7,16 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
+<<<<<<< HEAD
 if sudo cat /proc/version | grep -Eqi "android";then
  echo "android"
 else [[ $EUID -ne 0 ]] && echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
 fi
 # check os
+=======
+
+check_os() {
+>>>>>>> 811ebe1 (update)
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
 elif cat /etc/issue | grep -Eqi "debian"; then
@@ -26,8 +31,6 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
-elif sudo cat /proc/version | grep -Eqi "android"; then
-    release="android"    
 else
     echo -e "  không phát hiện ra phiên bản hệ thống！${plain}\n" && exit 1
 fi
@@ -59,18 +62,19 @@ fi
 if [[ -z "$os_version" && -f /etc/lsb-release ]]; then
     os_version=$(awk -F'[= ."]+' '/DISTRIB_RELEASE/{print $2}' /etc/lsb-release)
 fi
-
+}
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
     	yum update && yum upgrade -y
-        yum install wget curl tar git zsh vim python3 -y
+        yum install wget curl tar git zsh vim python3 tmux -y
     else
     	apt update && apt upgrade -y
-        apt install wget curl tar git zsh vim sudo -y
+        apt install wget curl tar git zsh vim tmux -y
     fi
 }
 install_mydotfile() {
     cd $HOME
+    mkdir -p $HOME/.local/bin
 	git clone https://github.com/Qiu2zhi1zhe3/mydotfile
 	cp -r ./mydotfile/. .
 	if [[ x"${release}" == x"centos" ]]; then
@@ -90,18 +94,34 @@ install_mydotfile() {
 	
 }
 setup() {
-    if [[ x"${release}" == x"android" ]]; then
-		chsh -s zsh
-    else
     	sed -i 's+required+sufficient+g' /etc/pam.d/chsh
 		chsh -s /bin/zsh
 		sed -i 's+.*PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
 		sed -i 's+.*PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
 		passwd root
 		service sshd restart
-    fi
 }
+<<<<<<< HEAD
 install_base
 install_mydotfile
 setup
 echo "Hoàn Thành Cài Đặt"
+=======
+if uname -o | grep -Eqi "android";then
+	apt update && apt upgrade -y
+	apt install wget git zsh vim tsu tmux exa -y
+	chsh -s zsh
+	git clone https://github.com/Qiu2zhi1zhe3/mydotfile
+	cd mydotfile
+	cp -rf .local .oh-my-zsh .aliases .autostart .gitconfig .vimrc .tmux.conf .zshrc ../
+	else 
+		if[[ $EUID -eq 0 ]]; then
+			check_os
+			install_base
+			install_mydotfile
+			setup
+		else
+		echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
+fi
+echo "Hoàn Thành Cài Đặt"
+>>>>>>> 811ebe1 (update)

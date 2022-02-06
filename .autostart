@@ -12,11 +12,11 @@ echo -e "\e[4 q"
 
 #c
 
-#if [ "$TMUX" == "" ]; then
+if [ "$TMUX" == "" ]; then
 
-#  tmux
+  tmux-zsh
 
-#fi
+fi
 
 #if [ ! -f ~/.scripts/pid/login ]; then
         

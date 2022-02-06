@@ -1,0 +1,8 @@
+#!/data/data/com.termux/files/usr/bin/bash
+export LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so
+if  tmux ls 2>/dev/null | grep termux >/dev/null; then
+	a=$(tmux lsw -F "#W" | awk 'NR==1')
+	tmux run -t termux "tmux new-window -a -t \"$a\" -n \" $a\" \"exec zsh\""
+else
+	tmux new -A -s termux -n "● zsh" "exec zsh"
+fi

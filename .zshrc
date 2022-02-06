@@ -9,6 +9,6 @@ export PATH
 export TERM=xterm-256color 
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
-source $HOME/.config/lf/icons
+source $HOME/.oh-my-zsh/themes/icons
 source $HOME/.aliases
 source $HOME/.autostart

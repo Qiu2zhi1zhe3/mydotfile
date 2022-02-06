@@ -75,15 +75,15 @@ install_mydotfile() {
 	cp -r ./mydotfile/. .
 	if [[ x"${release}" == x"centos" ]]; then
 		if [[ ${os_version} -eq 7 ]]; then
-    		rpm -ivh $HOME/bin/exa-0.10.1-1.el7.x86_64.rpm
-    	elif  [[ ${os_version} -eq 8 ]]; then
-    		rpm -ivh $HOME/bin/exa-0.10.1-1.el8.x86_64.rpm
-    	else
+    		   rpm -ivh $HOME/bin/exa-0.10.1-1.el7.x86_64.rpm
+    	        elif  [[ ${os_version} -eq 8 ]]; then
+    		   rpm -ivh $HOME/bin/exa-0.10.1-1.el8.x86_64.rpm
+    	        else
     		sed -i 's+.*=\"exa.*+\ +g' $HOME/.aliases
-    	if	
-    else
-    	cp -f $HOME/bin/exa $HOME/.local/bin/
-    fi
+    	        if	
+        else
+    	    cp -f $HOME/bin/exa $HOME/.local/bin/
+        fi
 	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile $HOME/bin
 	chmod -R 755 $HOME/.local
 	

@@ -101,7 +101,7 @@ if uname -o | grep -Eqi "android";then
 	cd mydotfile
 	cp -rf .local .oh-my-zsh .aliases .autostart .gitconfig .vimrc .tmux.conf .zshrc ../
 	else 
-		if[[ $EUID -eq 0 ]]; then
+		if [[ $EUID -eq 0 ]] ; then
 			check_os
 			install_base
 			install_mydotfile

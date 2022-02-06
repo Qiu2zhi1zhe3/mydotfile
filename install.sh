@@ -93,21 +93,22 @@ setup() {
 		service sshd restart
 }
 
-if uname -o | grep -Eqi "android";then
+if  uname -o | grep -Eqi "android";then
 	apt update && apt upgrade -y
 	apt install wget git zsh vim tsu tmux exa -y
 	chsh -s zsh
 	git clone https://github.com/Qiu2zhi1zhe3/mydotfile
 	cd mydotfile
 	cp -rf .local .oh-my-zsh .aliases .autostart .gitconfig .vimrc .tmux.conf .zshrc ../
-	else 
-		if [[ $EUID -eq 0 ]] ; then
+else	 
+		if [[ $EUID -eq 0 ]]; then
 			check_os
 			install_base
 			install_mydotfile
 			setup
 		else
 		echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
+		fi
 fi
 echo "Hoàn Thành Cài Đặt"
 

@@ -80,7 +80,7 @@ install_mydotfile() {
     		   rpm -ivh $HOME/bin/exa-0.10.1-1.el8.x86_64.rpm
     	        else
     		sed -i 's+.*=\"exa.*+\ +g' $HOME/.aliases
-    	        if	
+    	        fi	
         else
     	    cp -f $HOME/bin/exa $HOME/.local/bin/
         fi

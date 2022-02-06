@@ -8,7 +8,8 @@ cur_dir=$(pwd)
 
 # check root
 if sudo cat /proc/version | grep -Eqi "android";then
-	else [[ $EUID -ne 0 ]] && echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
+ echo "android"
+else [[ $EUID -ne 0 ]] && echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
 fi
 # check os
 if [[ -f /etc/redhat-release ]]; then

@@ -82,6 +82,7 @@ install_mydotfile() {
     		sed -i 's+.*=\"exa.*+\ +g' $HOME/.aliases
     	        fi	
         else
+            echo "aaa"
     	    cp -f $HOME/bin/exa $HOME/.local/bin/
         fi
 	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile $HOME/bin

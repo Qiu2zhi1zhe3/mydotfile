@@ -6,17 +6,9 @@ plain='\033[0m'
 
 cur_dir=$(pwd)
 
-# check root
-<<<<<<< HEAD
-if sudo cat /proc/version | grep -Eqi "android";then
- echo "android"
-else [[ $EUID -ne 0 ]] && echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
-fi
-# check os
-=======
 
+# check os
 check_os() {
->>>>>>> 811ebe1 (update)
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
 elif cat /etc/issue | grep -Eqi "debian"; then
@@ -86,7 +78,6 @@ install_mydotfile() {
     		sed -i 's+.*=\"exa.*+\ +g' $HOME/.aliases
     	        fi	
         else
-            echo "aaa"
     	    cp -f $HOME/bin/exa $HOME/.local/bin/
         fi
 	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile $HOME/bin
@@ -101,12 +92,7 @@ setup() {
 		passwd root
 		service sshd restart
 }
-<<<<<<< HEAD
-install_base
-install_mydotfile
-setup
-echo "Hoàn Thành Cài Đặt"
-=======
+
 if uname -o | grep -Eqi "android";then
 	apt update && apt upgrade -y
 	apt install wget git zsh vim tsu tmux exa -y
@@ -124,4 +110,4 @@ if uname -o | grep -Eqi "android";then
 		echo -e "  lỗi：phải sử dụng quyền root để chạy tập lệnh này！\n" && exit 1;
 fi
 echo "Hoàn Thành Cài Đặt"
->>>>>>> 811ebe1 (update)
+

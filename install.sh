@@ -83,6 +83,7 @@ install_mydotfile() {
 	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile $HOME/bin
 	chmod -R 755 $HOME/.local
 	sed -i 's/\/data\/data\/com.termux\/files//g' $HOME/.local/bin/tmux-zsh
+	sed -i '/autostart/d' $HOME/.zshrc
 	
 }
 setup() {
@@ -90,6 +91,8 @@ setup() {
 		chsh -s /bin/zsh
 		sed -i 's+.*PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
 		sed -i 's+.*PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
+		clear
+		echo "Mật Khẩu Cho root"
 		passwd root
 		service sshd restart
 }

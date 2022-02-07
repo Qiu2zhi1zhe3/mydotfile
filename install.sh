@@ -82,6 +82,7 @@ install_mydotfile() {
         fi
 	rm -rf $HOME/.git $HOME/README.md $HOME/install.sh 	$HOME/mydotfile $HOME/bin
 	chmod -R 755 $HOME/.local
+	sed -i 's/\/data\/data\/com.termux\/files//g' $HOME/.local/bin/tmux-zsh
 	
 }
 setup() {

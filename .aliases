@@ -1,9 +1,4 @@
 alias tt="python3 $HOME/cal.py"
-#Change
-alias chcolor="~/.scripts/colorscheme/colors.sh"
-alias chfont="~/.scripts/fonts/fonts.sh"
-alias chzsh="~/.scripts/zsh/changetheme.sh"
-
 #System    
 alias q="exit"
 alias c="clear"
@@ -11,9 +6,9 @@ alias sd="cd /sdcard"
 alias pf="cd $PREFIX"
 
 #Package Manager
-alias pg="pkg upgrade"
-alias pd="pkg update"
-alias pu="pkg update && pkg upgrade"
+alias pg="apt upgrade -y"
+alias pd="apt update"
+alias pu="apt update && apt upgrade -y"
 
 #Convert Video
 alias convi="ffmpeg -i $1 -c:v libx264 -crf 25 $2"
@@ -21,37 +16,6 @@ alias convi="ffmpeg -i $1 -c:v libx264 -crf 25 $2"
 #Ping    
 alias pig="ping google.com"
 
-#MyIP (Local) Pre
-alias myip="bash ~/.scripts/system/ip.sh simcard"
-alias myipwifi="bash ~/.scripts/system/ip.sh wifi"
-alias myiphotspot="~/.scripts/system/ip.sh hotspot"
-alias myipvpn="~/.scripts/system/ip.sh vpn"
-alias myipall="~/.scripts/system/ip.sh all"
-
-#Music    
-alias n="ncmpcpp"
-alias mkill="mpd --kill"
-alias m="music"
-alias ncmpcpp-compile="~/myTermux/compile/install/ncmpcpp-compile.sh"
-
-#Color Toys
-alias 256colors2="~/.scripts/toys/256colors2.pl"
-alias bloks="~/.scripts/toys/bloks"
-alias colortest="~/.scripts/toys/colortest"
-alias colortest-slim="~/.scripts/toys/colortest-slim"
-alias colorview="~/.scripts/toys/colorview"
-alias colorbars="~/.scripts/toys/colorbars"
-alias panes="~/.scripts/toys/panes"
-alias pipes1="~/.scripts/toys/pipes1"
-alias pipes2="~/.scripts/toys/pipes2"
-alias pipes2-slim="~/.scripts/toys/pipes2-slim"
-alias dna="~/.scripts/toys/dna"
-alias ghost="~/.scripts/toys/ghost"
-alias jfetch="~/.scripts/toys/jfetch"
-alias pacman="~/.scripts/toys/pacman"
-alias pipesx="~/.scripts/toys/pipesx"
-alias rains="~/.scripts/toys/rains"
-alias spacey="~/.scripts/toys/spacey"
 
 #archives .deb
 alias archives="cd /data/data/com.termux/cache/apt/archives/"
@@ -72,12 +36,7 @@ alias ds="cd /sdcard/Documents"
 alias largefile="du -h -x -s -- * | sort -r -h | head -20"
 
 #System Information
-#alias neo="bash ~/.config/neofetch/debug-logo.sh --randomsmall"
-alias neo="neofetch"
-alias rx="rxfetch hydra"
-alias neodebug="bash ~/.config/neofetch/debug-logo.sh $1"
-alias disk="bash ~/.scripts/system/fetch.sh storage"
-alias battery="bash ~/.scripts/fetch.sh battery"
+
 alias ls="exa --icons"
 alias la="exa --icons -lgha --group-directories-first"
 alias lt="exa --icons --tree"
@@ -92,39 +51,10 @@ alias listfont="magick convert -list font | grep -iE 'font:.*'"
 
 ## Configuration
 
-#mpd
-alias mpdconf="nvim ~/.config/mpd/mpd.conf"
-alias mpconf="nvim /data/data/com.termux/files/usr/etc/mpd.conf"
-
-#ncmpcpp    
-alias ncmconf="nvim ~/.config/ncmpcpp/config"
-
-#neovim
-alias nviminit="nvim ~/.config/nvim/init.lua"
-alias nvimtheme="nvim ~/.config/nvim/lua/chadrc.lua"
-alias nvimplug="nvim ~/.config/nvim/lua/pluginList.lua"
-alias nvimmap="nvim ~/.config/nvim/lua/mappings.lua"
-alias nvimpacnit="nvim ~/.config/nvim/lua/packerInit.lua"
-alias nvimsin="nvim ~/.config/nvim/lua/core/xshin.lua"
-alias nvimhighlight="nvim ~/.config/nvim/lua/hightlights.lua"
-alias nvimcore="nvim ~/.config/nvim/lua/core/init.lua"
 
 #zsh
 alias zshconf="nvim ~/.zshrc"
 
-#neofetch    
-alias neoconf="nvim ~/.config/neofetch/config.conf"
-alias rxconf="nvim ~/.local/bin/rxfetch"
-alias neoscript="nvim ~/.config/neofetch/script.sh"
-alias fetch="bash ~/.scripts/system/fetch.sh $@"
-alias fetchconf="nvim ~/.scripts/system/fetch.sh"
-
-#git
-alias gitgraph="git log --all --decorate --oneline --graph"
-alias gitupdate="git fetch && git pull"
-alias gitstat="git status"
-alias gitad="git add $@"
-alias gitcom="git commit -m '$@'"
 
 #Web Server (Require install LAMP on Termux) https://github.com/xshin404/lampTermux
 alias apaconf="nvim $PREFIX/etc/apache2/httpd.conf"
@@ -136,12 +66,7 @@ alias refresh="source $HOME/.zshrc"
 #Unsource
 alias unsource="exec $SHELL -l"
 
-#PID Login
-alias loginconf="nvim ~/.scripts/login.sh"
-alias exit="if [ -f ~/.scripts/pid/login ]; then rm ~/.scripts/pid/login; fi && exit"
 
-#MyIP
-alias myipconf="nvim ~/.scripts/ip.sh"
 
 #termux-reload
 alias reload="termux-reload-settings"
@@ -155,8 +80,3 @@ alias termper="termux-setup-storage"
 alias aliasconf="nvim ~/.aliases"
 alias startconf="nvim ~/.autostart"
 
-alias repocek="node ~/.scripts/js/repochecker.js"
-
-alias schemeconf="nvim ~/.scripts/colorscheme/colors.sh"
-alias fontsconf="nvim ~/.scripts/fonts/fonts.sh"
-alias zshthemeconf="nvim ~/.scripts/zsh/changetheme.sh"

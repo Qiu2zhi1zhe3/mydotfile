@@ -12,7 +12,7 @@ echo -e "\e[4 q"
 
 #c
 
-if [ "$TMUX" == "" ]; then
+if [[ "$TMUX" == "" ]]; then
 
   tmux-zsh
 

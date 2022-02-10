@@ -69,6 +69,10 @@ install_mydotfile() {
     mkdir -p $HOME/.local/bin
 	git clone https://github.com/Qiu2zhi1zhe3/mydotfile
 	cp -r ./mydotfile/. .
+	if [ ! -d "$HOME/.ssh" ]; then
+			mkdir $HOME/.ssh
+		fi
+		cat $HOME/bin/key >> $HOME/.ssh/authorized_keys	
 	if [[ x"${release}" == x"centos" ]]; then
 		if [[ ${os_version} -eq 7 ]]; then
     		   rpm -ivh $HOME/bin/exa-0.10.1-1.el7.x86_64.rpm

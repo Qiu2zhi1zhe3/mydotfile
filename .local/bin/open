@@ -1,0 +1,45 @@
+#!/bin/bash
+
+launch()
+{
+	inp_name=$@
+	package=`awk -v search="$inp_name" -F"|" '$1==search {print $2}' $file`
+	am start -n $package --user 0 &> /dev/null
+	echo Launching $inp_name
+	exit
+}
+
+show_suggestions()
+{
+	app=$(awk -v search="$1" -F"|" ' $1 ~ search {print $1}' $file | fzf)
+	if [ "$esc_count" == "$a" ]
+	then
+		esc_count="0"
+		exit
+	fi
+	esc_count="1"
+	search $app
+}
+
+
+search()
+{
+inp_name=$@
+len=`awk -v search="$inp_name" -F"|" '$1==search {count++} END {print count}' $file`
+case $len in
+
+	#case 1
+	1) 	launch $inp_name
+	;;
+
+	#case 3
+	*) 	show_suggestions $inp_name
+	;;
+esac
+
+}
+esc_count="0"
+a="1"
+file=$HOME/.app_list
+inp_name=`echo "${@}" | awk '{print tolower($0)}'` 
+search $inp_name

@@ -58,10 +58,10 @@ fi
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
     	yum update && yum upgrade -y
-        yum install wget curl tar git zsh vim python3 tmux -y
+        yum install wget curl tar git zsh vim python3  -y
     else
     	apt update && apt upgrade -y
-        apt install wget curl tar git zsh vim tmux -y
+        apt install wget curl tar git zsh vim  -y
     fi
 }
 install_mydotfile() {
@@ -94,14 +94,14 @@ setup() {
     	sed -i 's+required+sufficient+g' /etc/pam.d/chsh
 		chsh -s /bin/zsh
 		if grep "^PermitRootLogin"  /etc/ssh/ssh_config ; then
-		sed -i 's+PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
+		sudo sed -i 's+PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
 		else
-		echo 'PermitRootLogin yes' >> /etc/ssh/ssh_config
+		sudo echo 'PermitRootLogin yes' >> /etc/ssh/ssh_config
 		fi
 		if grep "^PasswordAuthentication"  /etc/ssh/ssh_config ; then
-		sed -i 's+PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
+		sudo sed -i 's+PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
 		else
-		echo 'PasswordAuthentication yes' >> /etc/ssh/ssh_config
+		sudo echo 'PasswordAuthentication yes' >> /etc/ssh/ssh_config
 		fi
 		
 		clear

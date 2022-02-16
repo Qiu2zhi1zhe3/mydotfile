@@ -93,15 +93,15 @@ install_mydotfile() {
 setup() {
     	sed -i 's+required+sufficient+g' /etc/pam.d/chsh
 		chsh -s /bin/zsh
-		if grep "^PermitRootLogin"  /etc/ssh/ssh_config ; then
-		sudo sed -i 's+PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
+		if grep "^PermitRootLogin"  /etc/ssh/sshd_config ; then
+		sed -i 's+PermitRootLogin.*+PermitRootLogin\ yes+g' /etc/ssh/sshd_config
 		else
-		sudo echo 'PermitRootLogin yes' >> /etc/ssh/ssh_config
+		echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 		fi
-		if grep "^PasswordAuthentication"  /etc/ssh/ssh_config ; then
-		sudo sed -i 's+PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
+		if grep "^PasswordAuthentication"  /etc/ssh/sshd_config ; then
+		sed -i 's+PasswordAuthentication.*+PasswordAuthentication\ yes+g' /etc/ssh/sshd_config
 		else
-		sudo echo 'PasswordAuthentication yes' >> /etc/ssh/ssh_config
+		echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 		fi
 		
 		clear
